@@ -45,10 +45,13 @@ void		Scalar::convert(std::string str)
 {
 	try
 	{
-		int		i = std::stoi(str);
-		char	c = static_cast<char>(i);
-		float	f = static_cast<float>(i);
-		double	d = static_cast<double>(i);
+		char	*end;
+		double	d = std::strtod(str.c_str(), &end);
+		if ((*end && *end != 'f') || strlen(end) > 1)
+			throw std::invalid_argument("Error: Invalid argument");
+		int		i = static_cast<int>(d);
+		char	c = static_cast<char>(d);
+		float	f = static_cast<float>(d);
 
 		std::cout << "char: ";
 		if (i < 32 || i > 126)

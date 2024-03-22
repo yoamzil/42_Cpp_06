@@ -18,6 +18,7 @@
 #define SCALAR_HPP
 
 #include <iostream>
+#include <cmath>
 #include <exception>
 
 class   Scalar
