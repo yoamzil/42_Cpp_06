@@ -14,26 +14,16 @@
 /*																						  */
 /* ************************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Scalar.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    try
-    {
-        Bureaucrat a("Ali", 2);
-        Bureaucrat b("Hmad", 149);
-        
-        
-        std::cout << a << std::endl;
-        a.incrementGrade();
-        std::cout << a << std::endl;
-        std::cout << b << std::endl;
-        b.decrementGrade();
-        std::cout << b << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    return (0);
+	if (ac == 2)
+	{
+		Scalar::convert(av[1]);
+	}
+	else
+	{
+		std::cout << "Error: Invalid number of arguments" << std::endl;
+	}
 }

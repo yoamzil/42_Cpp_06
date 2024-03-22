@@ -26,30 +26,55 @@ Scalar::~Scalar()
     std::cout << "Scalar destructor called" << std::endl;
 }
 
-// Scalar::Scalar(const std::string Name, int Grade) : name(Name)
-// {
-//     // std::cout << "Scalar parameterized constructor called" << std::endl;
-//     if (Grade < 1)
-//         throw GradeTooHighException();
-//     else if (Grade > 150)
-//         throw GradeTooLowException();
-//     grade = Grade;
-// }
+Scalar::Scalar(Scalar const &original)
+{
+    // std::cout << "Scalar copy constructor called" << std::endl;
+    *this = original;
+}
 
-// Scalar::Scalar(Scalar const &original) : name(original.name)
-// {
-//     // std::cout << "Scalar copy constructor called" << std::endl;
-//     *this = original;
-// }
+Scalar  &Scalar::operator=(Scalar const &original)
+{
+    if (this != &original)
+    {
+        *this = original;
+    }
+    return (*this);
+}
 
-// Scalar  &Scalar::operator=(Scalar const &original)
-// {
-//     if (this != &original)
-//     {
-//         this->grade = original.grade;
-//     }
-//     return (*this);
-// }
+void		Scalar::convert(std::string str)
+{
+	try
+	{
+		int		i = std::stoi(str);
+		char	c = static_cast<char>(i);
+		float	f = static_cast<float>(i);
+		double	d = static_cast<double>(i);
+
+		std::cout << "char: ";
+		if (i < 32 || i > 126)
+			std::cout << "Non displayable" << std::endl;
+		else
+			std::cout << "'" << c << "'" << std::endl;
+
+		std::cout << "int: " << i << std::endl;
+
+		std::cout << "float: ";
+		if (f - i == 0)
+			std::cout << f << ".0f" << std::endl;
+		else
+			std::cout << f << "f" << std::endl;
+
+		std::cout << "double: ";
+		if (d - i == 0)
+			std::cout << d << ".0" << std::endl;
+		else
+			std::cout << d << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
 
 // std::ostream    &operator<<(std::ostream &out, Scalar &Scalar)
 // {
@@ -57,12 +82,3 @@ Scalar::~Scalar()
 //     return (out);
 // }
 
-// std::string Scalar::getName()
-// {
-//     return (name);
-// }
-
-// int Scalar::getGrade()
-// {
-//     return (grade);
-// }

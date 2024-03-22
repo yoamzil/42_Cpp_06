@@ -23,17 +23,13 @@
 class   Scalar
 {
     private:
+        Scalar();
 
     public:
-        Scalar();
         ~Scalar();
         Scalar(Scalar const &original);
         Scalar  &operator=(Scalar const &original);
-
-        Scalar(const std::string Name, int grade);
-
-        // std::string getName();
-        // int         getGrade();
+		static void		convert(std::string str);
 };
 
 // std::ostream    &operator<<(std::ostream &out, Scalar &scalar);
