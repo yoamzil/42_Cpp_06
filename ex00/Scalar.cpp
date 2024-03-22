@@ -18,49 +18,55 @@
 
 Scalar::Scalar()
 {
-    std::cout << "Scalar constructor called" << std::endl;
+	std::cout << "Scalar constructor called" << std::endl;
 }
 
 Scalar::~Scalar()
 {
-    std::cout << "Scalar destructor called" << std::endl;
+	std::cout << "Scalar destructor called" << std::endl;
 }
 
 Scalar::Scalar(Scalar const &original)
 {
-    // std::cout << "Scalar copy constructor called" << std::endl;
-    *this = original;
+	// std::cout << "Scalar copy constructor called" << std::endl;
+	*this = original;
 }
 
-Scalar  &Scalar::operator=(Scalar const &original)
+Scalar &Scalar::operator=(Scalar const &original)
 {
-    if (this != &original)
-    {
-        *this = original;
-    }
-    return (*this);
+	if (this != &original)
+	{
+		*this = original;
+	}
+	return (*this);
 }
 
-void		Scalar::convert(std::string str)
+void Scalar::convert(std::string str)
 {
 	try
 	{
-		char	*end;
-		double	d = std::strtod(str.c_str(), &end);
+		char *end;
+		double d = std::strtod(str.c_str(), &end);
 		if ((*end && *end != 'f') || strlen(end) > 1)
 			throw std::invalid_argument("Error: Invalid argument");
-		int		i = static_cast<int>(d);
-		char	c = static_cast<char>(d);
-		float	f = static_cast<float>(d);
+		int i = static_cast<int>(d);
+		char c = static_cast<char>(d);
+		float f = static_cast<float>(d);
 
-		std::cout << "char: ";
-		if (i < 32 || i > 126)
-			std::cout << "Non displayable" << std::endl;
+		if (str != "nanf" && str != "-inff" && str != "inff" && str != "nan" && str != "-inf" && str != "inf")
+		{
+			if (i < 32 || i > 126)
+				std::cout << "char: Non displayable" << std::endl;
+			else
+				std::cout << "'" << c << "'" << std::endl;
+
+			std::cout << "int: " << i << std::endl;
+		}
 		else
-			std::cout << "'" << c << "'" << std::endl;
-
-		std::cout << "int: " << i << std::endl;
-
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+		}
 		std::cout << "float: ";
 		if (f - i == 0)
 			std::cout << f << ".0f" << std::endl;
@@ -73,7 +79,7 @@ void		Scalar::convert(std::string str)
 		else
 			std::cout << d << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -84,4 +90,3 @@ void		Scalar::convert(std::string str)
 //     out << Scalar.getName() << ", Scalar grade " << Scalar.getGrade();
 //     return (out);
 // }
-
