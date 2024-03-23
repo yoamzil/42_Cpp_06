@@ -28,7 +28,7 @@ Scalar::~Scalar()
 
 Scalar::Scalar(Scalar const &original)
 {
-	// std::cout << "Scalar copy constructor called" << std::endl;
+	std::cout << "Scalar copy constructor called" << std::endl;
 	*this = original;
 }
 
@@ -84,9 +84,3 @@ void Scalar::convert(std::string str)
 		std::cerr << e.what() << std::endl;
 	}
 }
-
-// std::ostream    &operator<<(std::ostream &out, Scalar &Scalar)
-// {
-//     out << Scalar.getName() << ", Scalar grade " << Scalar.getGrade();
-//     return (out);
-// }

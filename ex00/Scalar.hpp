@@ -33,6 +33,4 @@ class   Scalar
 		static void		convert(std::string str);
 };
 
-// std::ostream    &operator<<(std::ostream &out, Scalar &scalar);
-
 #endif
